@@ -25,7 +25,7 @@
     "eject": "react-scripts eject",
     "nodesass": "sass --watch src/App.scss src/App.css",
     "devStart": "nodemon server.js",
-    "postinstall": "npm build"
+    "postinstall": "yarn build"
   },
   "devDependencies": {
     "nodemon": "^2.0.4"
