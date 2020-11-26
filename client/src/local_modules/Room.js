@@ -145,12 +145,17 @@ const Room = (props) => {
         myStream.getVideoTracks()[0].enabled = !(myStream.getVideoTracks()[0].enabled);
     }
 
+    function leaveRoom(){
+        window.history.back();
+    }
+
     return (
         <div>
             <video controls style={{height: 300}} autoPlay ref={userVideo} />
             <video controls style={{height: 300}} autoPlay ref={partnerVideo} />
-            <button onClick={muteMic}>Toggle Mic</button>
-            <button onClick={muteCamera}>Toggle Camera</button>
+            <button className="btn-createRoom" onClick={muteMic}>Toggle Mic</button>
+            <button className="btn-createRoom" onClick={muteCamera}>Toggle Camera</button>
+            <button className="btn-createRoom" onClick={leaveRoom}>Leave Room</button>
         </div>
     );
 
