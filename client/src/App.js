@@ -134,24 +134,6 @@ function SignOut() {
 
 
 function ChatRoom() {
-  const msgCol = firestore.collection('messages');
-  const query = msgCol.orderBy('createdAt').limit(25);
-  const [messages] = useCollectionData(query, {idField: 'id'});
-  console.log(messages)
-  const[formValue, setFormValue] = useState('');
-  const dummy = useRef();
-  const sendMessage = async(change) => {
-    change.preventDefault();
-    const {uid, photoURL} = auth.currentUser;
-    await msgCol.add({
-      text: formValue,
-      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-      uid,
-      photoURL
-    });
-    setFormValue('');
-    dummy.current.scrollIntoView({ behavior: 'smooth' });
-  }
   return(
   <>
     <BrowserRouter className="roomButton">
@@ -165,43 +147,8 @@ function ChatRoom() {
 }
 
 /*
-<div>
-      
-    </div>
-      <form onSubmit={sendMessage}>
-        <input value={formValue} className="inputfield" onChange={(change) => setFormValue(change.target.value)} placeholder="Enter Message" />
-        <button type="submit" className="btn-createRoom" disabled={!formValue}>🖂</button>
-      </form>
-      <p>{messages && messages.map(msg => <ChatMessage key={msg.id} message={msg} />)}</p>
-        <span ref={dummy}></span>
 
-
-        <div className="login-logintext">
-          <h1 className="logintext">Login</h1>
-        </div>
-
-        <div className="logininput-div">
-          <form className="login-inputform">
-            <input className="login-inputfield" placeholder="Email" value={emailValue} onChange={(change) => setEmailValue(change.target.value)}  />
-          </form>
-
-          <form className="login-inputform">
-            <input className="login-inputfield" placeholder="Password" type="password" value={passValue} onChange={(change) => setPassValue(change.target.value)}/>
-          </form>
-
-          <a className="btn-login" onClick={(emailInput, passwordInput) => SignInEmail}>Login</a>
 */
 
-
-function ChatMessage(props) {
-  const { text, uid, photoURL } = props.message;
-  const messageClass = uid === auth.currentUser.uid ? 'sent' : 'received';
-  return (
-    <div className={`message ${messageClass}`}>
-      <img src={photoURL} alt="Message" />
-      <p>{text}</p>
-    </div>
-  )
-}
 
 export default App;
