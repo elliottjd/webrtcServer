@@ -71,7 +71,17 @@ function App() {
 function SignInEmail(emailInput, passwordInput) {
   const signInWithEmail = () => {
     firebase.auth().signInWithEmailAndPassword(emailInput, passwordInput)
-  return(
+    .then((user) => {
+    return auth.currentUser &&
+    
+    });
+    .catch((error) => {
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      window.alert(errorMessage);
+    });
+          
+  
   <>
     <img src={googleLogo} className="btn-icon" onClick={signInWithEmail}/>
   </>
